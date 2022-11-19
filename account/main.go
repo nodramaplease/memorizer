@@ -10,6 +10,7 @@ import (
 	"time"
 
 	"github.com/gin-gonic/gin"
+	"github.com/nodramaplease/memorizer/handler"
 )
 
 func main() {
@@ -17,10 +18,8 @@ func main() {
 
 	router := gin.Default()
 
-	router.GET("/api/account", func(ctx *gin.Context) {
-		ctx.JSON(http.StatusOK, gin.H{
-			"hey": "there",
-		})
+	handler.NewHandler(&handler.Config{
+		R: router,
 	})
 
 	srv := &http.Server{
