@@ -22,7 +22,6 @@ func (m *MockUserService) Get(ctx context.Context, uid uuid.UUID) (*model.User, 
 	// first value passed to "Return"
 	var r0 *model.User
 	if ret.Get(0) != nil {
-		// we can just return this if we know we won't be passing function to "Return"
 		r0 = ret.Get(0).(*model.User)
 	}
 
@@ -33,4 +32,15 @@ func (m *MockUserService) Get(ctx context.Context, uid uuid.UUID) (*model.User, 
 	}
 
 	return r0, r1
+}
+
+func (m *MockUserService) Signup(ctx context.Context, u *model.User) error {
+	ret := m.Called(ctx, u)
+
+	var r0 error
+	if ret.Get(0) != nil {
+		r0 = ret.Get(0).(error)
+	}
+
+	return r0
 }

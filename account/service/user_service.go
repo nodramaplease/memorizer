@@ -33,3 +33,7 @@ func (s *UserService) Get(ctx context.Context, uid uuid.UUID) (*model.User, erro
 
 	return u, err
 }
+
+func (s *UserService) Signup(ctx context.Context, u *model.User) error {
+	panic("Not implemented yet!")
+}
