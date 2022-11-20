@@ -5,8 +5,8 @@ import (
 	"net/http"
 
 	"github.com/gin-gonic/gin"
-	"github.com/nodramaplease/memorizer/model"
-	"github.com/nodramaplease/memorizer/model/apperrors"
+	"github.com/nodramaplease/memorizer/account/model"
+	"github.com/nodramaplease/memorizer/account/model/apperrors"
 )
 
 // UserDetails handler calls services for getting

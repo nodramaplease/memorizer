@@ -9,9 +9,9 @@ import (
 
 	"github.com/gin-gonic/gin"
 	"github.com/google/uuid"
-	"github.com/nodramaplease/memorizer/model"
-	"github.com/nodramaplease/memorizer/model/apperrors"
-	"github.com/nodramaplease/memorizer/model/mocks"
+	"github.com/nodramaplease/memorizer/account/model"
+	"github.com/nodramaplease/memorizer/account/model/apperrors"
+	"github.com/nodramaplease/memorizer/account/model/mocks"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/mock"
 )

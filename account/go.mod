@@ -1,4 +1,4 @@
-module github.com/nodramaplease/memorizer
+module github.com/nodramaplease/memorizer/account
 
 go 1.19
 

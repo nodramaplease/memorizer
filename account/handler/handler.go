@@ -5,7 +5,7 @@ import (
 	"os"
 
 	"github.com/gin-gonic/gin"
-	"github.com/nodramaplease/memorizer/model"
+	"github.com/nodramaplease/memorizer/account/model"
 )
 
 type Handler struct {
