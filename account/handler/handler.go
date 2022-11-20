@@ -5,16 +5,22 @@ import (
 	"os"
 
 	"github.com/gin-gonic/gin"
+	"github.com/nodramaplease/memorizer/model"
 )
 
-type Handler struct{}
+type Handler struct {
+	UserService model.UserService
+}
 
 type Config struct {
-	R *gin.Engine
+	UserService model.UserService
+	R           *gin.Engine
 }
 
 func NewHandler(c *Config) {
-	h := &Handler{}
+	h := &Handler{
+		UserService: c.UserService,
+	}
 
 	g := c.R.Group(os.Getenv("ACCOUNT_API_URL"))
 	g.GET("/", func(c *gin.Context) {
@@ -22,6 +28,7 @@ func NewHandler(c *Config) {
 			"Wakanda": "Forever",
 		})
 	})
+	g.GET("/details", h.UserDetails)
 	g.POST("/signup", h.Signup)
 	g.POST("/signin", h.Signin)
 	g.POST("/signout", h.Signout)
@@ -29,14 +36,6 @@ func NewHandler(c *Config) {
 	g.POST("/image", h.Image)
 	g.DELETE("/image", h.DeleteImage)
 	g.PUT("/details", h.Details)
-}
-
-// Me handler calls services for getting
-// a user's details
-func (h *Handler) Me(c *gin.Context) {
-	c.JSON(http.StatusOK, gin.H{
-		"hello": "it's me",
-	})
 }
 
 // Signup handler
