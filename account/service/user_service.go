@@ -2,9 +2,11 @@ package service
 
 import (
 	"context"
+	"log"
 
 	"github.com/google/uuid"
 	"github.com/nodramaplease/memorizer/account/model"
+	"github.com/nodramaplease/memorizer/account/model/apperrors"
 )
 
 // UserService acts as a struct for injecting an implementation of UserRepository
@@ -35,5 +37,19 @@ func (s *UserService) Get(ctx context.Context, uid uuid.UUID) (*model.User, erro
 }
 
 func (s *UserService) Signup(ctx context.Context, u *model.User) error {
-	panic("Not implemented yet!")
+	pw, err := hashPassword(u.Password)
+
+	if err != nil {
+		log.Printf("Unable to signup user for email %v: %v", u.Email, err)
+		return apperrors.NewInternal()
+	}
+
+	u.Password = pw
+
+	if err := s.UserRepository.Create(ctx, u); err != nil {
+		return err
+	}
+
+	return nil
+
 }
